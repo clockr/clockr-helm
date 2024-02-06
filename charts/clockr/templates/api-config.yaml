@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-api-config
+data:
+  DB_HOST: "{{ .Values.clockr.database.host }}"
+  DB_USER: "{{ .Values.clockr.database.user }}"
+  DB_PASSWORD: "{{ .Values.clockr.database.password }}"
+  DB_PORT: "{{ .Values.clockr.database.port }}"
+  INIT_ADMIN_EMAIL: "{{ .Values.clockr.admin.email }}"
+  INIT_ADMIN_PASSWORD: "{{ .Values.clockr.admin.password }}"
+  GRAILS_JWT_SECRET: "{{ .Values.clockr.grails.jwt }}"

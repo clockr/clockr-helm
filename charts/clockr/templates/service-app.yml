@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ include "clockr.fullname" . }}-app-service
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: {{ include "clockr.fullname" . }}-app
+  ports:
+    - nodePort: {{ .Values.nodePort.app }}
+      port: 80
+      targetPort: 80
