@@ -1,6 +1,7 @@
 apiVersion: v2
 name: clockr
 description: A Helm chart for Kubernetes
+icon: data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5MCIgc3Ryb2tlPSJibHVlIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUi
 
 # A chart can be either an 'application' or a 'library' chart.
 #
