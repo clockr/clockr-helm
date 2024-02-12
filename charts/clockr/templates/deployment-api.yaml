@@ -29,41 +29,40 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}-api
-        - envFrom:
-          - configMapRef:
-              name: {{ .Chart.Name }}-api-config
-              optional: false
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/{{ .Values.image.name}}-api:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}-api:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Chart.Name }}-api-config
+                optional: false
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           livenessProbe:
             exec:
               command:
                 - /bin/bash
                 - -c
-                - if test $(curl --silent --output /dev/stderr --write-out %{http_code}
-                  http://localhost:8080/index) -ne 404; then exit 1; fi
-            failureThreshold: 3
+                - if test $(curl --silent --output /dev/stderr --write-out %{http_code} http://localhost:8080/index) -ne 404; then exit 1; fi
             initialDelaySeconds: 45
             periodSeconds: 10
-            successThreshold: 1
             timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
           readinessProbe:
             exec:
               command:
                 - /bin/bash
                 - -c
-                - if test $(curl --silent --output /dev/stderr --write-out %{http_code}
-                  http://localhost:8080/index) -ne 404; then exit 1; fi
-            failureThreshold: 3
+                - if test $(curl --silent --output /dev/stderr --write-out %{http_code} http://localhost:8080/index) -ne 404; then exit 1; fi
+            initialDelaySeconds: 45
             periodSeconds: 10
-            successThreshold: 1
             timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 

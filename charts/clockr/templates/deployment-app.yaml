@@ -29,51 +29,26 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}-app
-        - envFrom:
-            - configMapRef:
-                name: {{ .Chart.Name }}-app-config
-                optional: false
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/{{ .Values.image.name}}-app:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}-app:latest"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Chart.Name }}-app-config
+                optional: false
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           livenessProbe:
             exec:
               command:
                 - curl
                 - '-f'
                 - localhost:80
-            failureThreshold: 3
             initialDelaySeconds: 15
             periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 3
-          readinessProbe:
-            exec:
-              command:
-                - curl
-                - '-f'
-                - localhost:80
             failureThreshold: 3
-            periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 3
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            timeoutSeconds:
