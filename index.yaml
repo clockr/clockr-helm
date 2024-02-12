@@ -3,13 +3,13 @@ entries:
   clockr:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2024-02-12T11:59:17.399315+01:00"
+    created: "2024-02-12T12:30:22.247203+01:00"
     description: A Helm chart for Kubernetes
     digest: 1d81df89c2f18ae83d6e80daf3225fc0c880e1e065e04bb711666ff5f158b429
     icon: data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI5MCIgc3Ryb2tlPSJibHVlIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUi
     name: clockr
     type: application
     urls:
-    - https://github.com/clockr/clockr-helm/clockr-0.1.0.tgz
+    - https://clockr.github.io/clockr-helm/clockr-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-12T11:59:17.39675+01:00"
+generated: "2024-02-12T12:30:22.245718+01:00"
